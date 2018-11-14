@@ -40,7 +40,9 @@ public class EnterButton implements ActionListener {
         }
         if(!error){
             //JOptionPane.showMessageDialog(null,secsessMessage,"Вход выполненен.", JOptionPane.INFORMATION_MESSAGE);
-            CalcWindow cW = new CalcWindow();
+            //CalcWindow cW = new CalcWindow();
+            InitCalcWindow initCalcWindow = new InitCalcWindow();
+            initCalcWindow.getcW();
         }
         else {
             JOptionPane.showMessageDialog(null, errorMessage,"Ошибка.", JOptionPane.ERROR_MESSAGE);
