@@ -1,3 +1,4 @@
+package Client;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,7 @@ public class SigninButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/Server/DataBase.txt";
+        String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/src/Server/DataBase.txt";
         ArrayList<String> logList = new ArrayList<>();
         boolean passwordError = false;
         boolean loginError = false;
@@ -24,7 +25,7 @@ public class SigninButton implements ActionListener {
 
         String log = LoginWindow.login.getText();
         String password = new String (LoginWindow.pass.getPassword());
-        System.out.println(log);
+        //System.out.println(log);
         //String message = "Вы успешно зарегистрированы!";
 
         /*Проверка на недопустимые символы*/

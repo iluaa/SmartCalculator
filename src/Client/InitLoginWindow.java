@@ -1,3 +1,5 @@
+package Client;
+
 public class InitLoginWindow {
 
     private LoginWindow lW = new LoginWindow();

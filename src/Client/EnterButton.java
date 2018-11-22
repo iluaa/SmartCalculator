@@ -1,3 +1,5 @@
+package Client;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,7 @@ public class EnterButton implements ActionListener {
         ArrayList<String> logList = new ArrayList<>();
         ArrayList<String> passList = new ArrayList<>();
 
-        String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/Server/DataBase.txt";
+        String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/src/Server/DataBase.txt";
         String errorMessage = "Неверный логин/пароль.";
         String secsessMessage ="Вход выполнен";
         boolean error = true;
@@ -43,6 +45,7 @@ public class EnterButton implements ActionListener {
             //CalcWindow cW = new CalcWindow();
             InitCalcWindow initCalcWindow = new InitCalcWindow();
             initCalcWindow.getcW();
+
         }
         else {
             JOptionPane.showMessageDialog(null, errorMessage,"Ошибка.", JOptionPane.ERROR_MESSAGE);

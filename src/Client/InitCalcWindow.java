@@ -1,3 +1,5 @@
+package Client;
+
 public class InitCalcWindow {
 
     private CalcWindow cW = new CalcWindow();
