@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class EnterButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        String loginEnter = LoginWindow.login.getText();
-        String passwordEnter = new String (LoginWindow.pass.getPassword());
-        String accountEnter = loginEnter + " " + passwordEnter;
+        //String loginEnter = LoginWindow.login.getText();
+        //String passwordEnter = new String (LoginWindow.pass.getPassword());
+        //String accountEnter = loginEnter + " " + passwordEnter;
         ArrayList<String> logList = new ArrayList<>();
         ArrayList<String> passList = new ArrayList<>();
 
@@ -22,6 +22,9 @@ public class EnterButton implements ActionListener {
         String errorMessage = "Неверный логин/пароль.";
         String secsessMessage ="Вход выполнен";
         boolean error = true;
+
+        String login = Hashing.hashLogin();
+        String pass = Hashing.hashPassword();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(dataBase))) {
             while(reader.ready()){
@@ -35,7 +38,7 @@ public class EnterButton implements ActionListener {
             e1.printStackTrace();
         }
         for (int i = 0; i < logList.size(); i++){
-            if(logList.get(i).equals(loginEnter)&&passList.get(i).equals(passwordEnter)){
+            if(logList.get(i).equals(login)&&passList.get(i).equals(pass)){
                 error = false;
                 break;
             }

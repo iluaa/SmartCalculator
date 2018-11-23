@@ -19,7 +19,6 @@ public class SigninButton implements ActionListener {
 
         String trueMessage = "Регистрация завершена";
         String falseLogMessage = "Пользователь с таким именем уже существует";
-        String falsePassMessage = "Пароли не совпадают";
         String falseIsEmpty = "Логин/Пароль должны быть заполнены";
         String falseContainsSpace = "Логин не может содержать пробелы";
 
@@ -27,6 +26,9 @@ public class SigninButton implements ActionListener {
         String password = new String (LoginWindow.pass.getPassword());
         //System.out.println(log);
         //String message = "Вы успешно зарегистрированы!";
+
+        String login = Hashing.hashLogin();
+        String pass = Hashing.hashPassword();
 
         /*Проверка на недопустимые символы*/
         if (log.contains(" ")) {
@@ -57,7 +59,7 @@ public class SigninButton implements ActionListener {
         /*Если логин оригинален и введенные пароли совпадают, регистрация прошла успешно*/
         if (!logPassError && !loginError && !passwordError) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataBase, true))) {
-                writer.write(log + " " + password);
+                writer.write(login + " " + pass);
                 writer.newLine();
                 ;
 
