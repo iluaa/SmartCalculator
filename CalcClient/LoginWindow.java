@@ -1,9 +1,9 @@
-package Client;
-
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class LoginWindow {
+
 
     private JLabel loginLabel = new JLabel("Введите логин:");
     private JLabel passLabel = new JLabel("Введите пароль:");
@@ -11,9 +11,9 @@ public class LoginWindow {
     static JPasswordField pass = new JPasswordField();
     private JButton enterButton = new JButton("Войти");
     private JButton signinButton = new JButton("Зарегистрироваться");
+    private static JFrame frame = new JFrame("Авторизация");
+    public LoginWindow () throws IOException, ClassNotFoundException {
 
-    public LoginWindow (){
-        JFrame frame = new JFrame("Авторизация");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100,100,350,105);
         //frame.setSize(450,165);
@@ -49,6 +49,9 @@ public class LoginWindow {
         frame.add(upPanel, BorderLayout.NORTH);
         frame.add(middlePanel, BorderLayout.CENTER);
         frame.add(downPanel, BorderLayout.SOUTH);
+    }
+    static void getLoginWindowInvisible(){
+        frame.setVisible(false);
     }
 }
 

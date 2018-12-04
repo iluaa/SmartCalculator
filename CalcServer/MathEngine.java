@@ -1,5 +1,6 @@
-package Server;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -92,5 +93,12 @@ public class MathEngine  {
     double div(double a, double b)
     {
         return a/b;
+    }
+
+    void toWriteException(String exMessage){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.logger,true))) {
+            writer.write(exMessage);
+            writer.newLine();
+        } catch (IOException ex) {ex.printStackTrace();}
     }
 }

@@ -1,7 +1,7 @@
-package Client;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CalcWindow{
 
@@ -17,11 +17,13 @@ public class CalcWindow{
     private JLabel inputText = new JLabel("Введите операцию");
     private JLabel text = new JLabel(" ");
     private Font font = new Font(Font.SANS_SERIF,Font.BOLD,20);
+    private Font fontField = new Font(Font.SANS_SERIF,Font.BOLD,15);
+
 
     public CalcWindow(){
-        JFrame frameCalc = new JFrame("Калькулятор");
+        JFrame frameCalc = new JFrame("SmtCalc");
         frameCalc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameCalc.setBounds(100,100,350,385);
+        frameCalc.setBounds(100,100,221,315);
         frameCalc.setLocationRelativeTo(null);
         frameCalc.setVisible(true);
         frameCalc.setResizable(false);
@@ -33,10 +35,10 @@ public class CalcWindow{
         for (int x=0; x<3; x++){
             for (int y=0; y<3; y++){
                 numbers[x * 3 + y + 1] = new JButton((x * 3 + y + 1) + "");
-                numbers[x * 3 + y + 1].setBounds(x * (50 + 20) + 135,y * (50 + 20) + 70,50,50);
+                numbers[x * 3 + y + 1].setBounds(x * (50 + 2) + 57,y * (50 + 2) + 70,50,50);
                 numbers[x * 3 + y + 1].setBackground(Color.white);
                 numbers[x * 3 + y + 1].setFont(font);
-                numbers[x * 3 + y + 1].setBorder(null);
+                //numbers[x * 3 + y + 1].setBorder(null);
                 numbers[x * 3 + y + 1].addActionListener( new ButtonAction());
                 numberPanel.add(numbers[x * 3 + y + 1]);
 
@@ -45,53 +47,58 @@ public class CalcWindow{
         numbers[0] = new JButton("0");
         numbers[0].setFont(font);
         numbers[0].setBackground(Color.white);
-        numbers[0].setBounds(205,280,50,50);
-        numbers[0].setBorder(null);
+        numbers[0].setBounds(109,226,50,50);
+        //numbers[0].setBorder(null);
         numbers[0].addActionListener(new ButtonAction());
         numberPanel.add(numbers[0]);
 
 
         buttonPlus.setBackground(Color.lightGray);
         buttonPlus.setFont(font);
-        buttonPlus.setBounds(20,70,50,50);
+        buttonPlus.setBounds(5,70,50,50);
         buttonPlus.addActionListener(new ButtonAction());
         buttonPlus.setBorder(null);
         buttonMinus.setBackground(Color.lightGray);
         buttonMinus.setFont(font);
-        buttonMinus.setBounds(20,140,50,50);
+        buttonMinus.setBounds(5,122,50,50);
         buttonMinus.addActionListener(new ButtonAction());
         buttonMinus.setBorder(null);
         buttonMult.setBackground(Color.lightGray);
         buttonMult.setFont(font);
-        buttonMult.setBounds(20,210,50,50);
+        buttonMult.setBounds(5,174,50,50);
         buttonMult.addActionListener(new ButtonAction());
         buttonMult.setBorder(null);
         buttonDiv.setBackground(Color.lightGray);
         buttonDiv.setFont(font);
-        buttonDiv.setBounds(20,280,50,50);
+        buttonDiv.setBounds(5,226,50,50);
         buttonDiv.setBorder(null);
         buttonDiv.addActionListener(new ButtonAction());
         buttonRes.setBackground(Color.lightGray);
         buttonRes.setFont(font);
-        buttonRes.setBounds(285,10,50,50);
+        buttonRes.setBounds(162,10,50,50);
         buttonRes.addActionListener( new ButtonResult());
         buttonRes.setBorder(null);
         buttonClear.setFont(font);
-        buttonClear.setBounds(275,280,50,50);
+        buttonClear.setBounds(161,226,50,50);
         buttonClear.setBackground(Color.lightGray);
-        buttonClear.addActionListener(new ButtonCleared());
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalcWindow.inputField.setText("");
+            }
+        });
         buttonClear.setBorder(null);
         buttonPoint.setFont(font);
-        buttonPoint.setBounds(135,280,50,50);
+        buttonPoint.setBounds(57,226,50,50);
         buttonPoint.setBackground(Color.lightGray);
         buttonPoint.addActionListener(new ButtonAction());
         buttonPoint.setBorder(null);
 
 
-        inputField.setBounds(10,10,260, 50);
-        inputField.setBackground(Color.lightGray);
+        inputField.setBounds(5,10,155, 50);
+        inputField.setBackground(Color.white);
         inputField.setEditable(false);
-        inputField.setFont(font);
+        inputField.setFont(fontField);
         inputField.setBorder(null);
 
         numberPanel.add(inputField);

@@ -1,26 +1,30 @@
-package Client;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class SigninButton implements ActionListener {
+    //private String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/src/Server/DataBase.txt";
+    private String trueMessage = "Регистрация завершена. Для входа перезапустите приложение.";
+    private String falseLogMessage = "Пользователь с таким именем уже существует.";
+    private String falseIsEmpty = "Логин/Пароль должны быть заполнены.";
+    private String falseContainsSpace = "Логин не может содержать пробелы.";
+
+    static private Socket connection;
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String dataBase = "/Users/Илья/Desktop/учёба/курсыJava/SmartCalculator/src/Server/DataBase.txt";
+
         ArrayList<String> logList = new ArrayList<>();
         boolean passwordError = false;
         boolean loginError = false;
         boolean logPassError = false;
 
-        String trueMessage = "Регистрация завершена";
-        String falseLogMessage = "Пользователь с таким именем уже существует";
-        String falseIsEmpty = "Логин/Пароль должны быть заполнены";
-        String falseContainsSpace = "Логин не может содержать пробелы";
+
 
         String log = LoginWindow.login.getText();
         String password = new String (LoginWindow.pass.getPassword());
@@ -41,7 +45,7 @@ public class SigninButton implements ActionListener {
             JOptionPane.showMessageDialog(null, falseIsEmpty, "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
         /*Проверка введенного логина на уникальность*/
-        try (BufferedReader reader = new BufferedReader(new FileReader(dataBase))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Main.dataBase))) {
             while (reader.ready()) {
                 String line = reader.readLine();
                 String logLine = line.split(" ", 2)[0];
@@ -50,19 +54,26 @@ public class SigninButton implements ActionListener {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        //ArrayList<String> logList = FileWorker.fileReaderLogin(dataBase);
         for (String str : logList){
             if (!logPassError && str.equals(log)){
                 loginError = true;
                 JOptionPane.showMessageDialog(null, falseLogMessage, "Ошибка", JOptionPane.ERROR_MESSAGE);
             }
         }
+
         /*Если логин оригинален и введенные пароли совпадают, регистрация прошла успешно*/
         if (!logPassError && !loginError && !passwordError) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataBase, true))) {
+
+            /*try {
+                FileWorker.fileWriter(dataBase,login + " " + pass);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }*/
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.dataBase, true))) {
                 writer.write(login + " " + pass);
                 writer.newLine();
-                ;
-
                 writer.flush();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -70,4 +81,5 @@ public class SigninButton implements ActionListener {
             JOptionPane.showMessageDialog(null, trueMessage, "Информация.", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
 }

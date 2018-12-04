@@ -1,5 +1,3 @@
-package Client;
-
 public class Hashing {
     //String log = LoginWindow.login.getText();
     //String password = new String (LoginWindow.pass.getPassword());
